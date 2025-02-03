@@ -70,10 +70,15 @@ export function initMenu() {
     isOpen ? tlOpen.reverse() : tlOpen.play()
   })
 
+  // se clicco sul secondo link chiudo il menu
+  menu_links[1].link.addEventListener('click', () => {
+    isOpen ? tlOpen.reverse() : tlOpen.play()
+  })
+
   const tlOpen = gsap.timeline({
     paused: true,
     defaults: {
-      duration: 1,
+      duration: 0.4,
       ease: 'power4.out',
     },
     onComplete: () => {
@@ -94,9 +99,9 @@ export function initMenu() {
   tlOpen
     .to(menu, { height: '100vh', display: 'grid' })
     .to(menu_links[0].link, { opacity: 1, y: '0rem' }, '-=.2')
-    .to(menu_links[1].link, { opacity: 1, y: '0rem' }, '-=.8')
-    .to(menu_links[2].link, { opacity: 1, y: '0rem' }, '-=.8')
-    .to(menu_links[0].image, { opacity: 1 }, '-=.4')
+    .to(menu_links[1].link, { opacity: 1, y: '0rem' }, '-=.4')
+    .to(menu_links[2].link, { opacity: 1, y: '0rem' }, '-=.4')
+    .to(menu_links[0].image, { opacity: 1 }, '-=.2')
 
   // #endregion
 
