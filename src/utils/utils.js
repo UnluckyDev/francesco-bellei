@@ -4,8 +4,9 @@ import { CustomEase } from 'gsap/CustomEase'
 import SplitType from 'split-type'
 import { initHomepage } from '../pages/homepage'
 import { initChiSiamo } from '../pages/chi-siamo'
+import { Flip } from 'gsap/Flip'
 
-gsap.registerPlugin(ScrollTrigger, CustomEase)
+gsap.registerPlugin(ScrollTrigger, CustomEase, Flip)
 
 export const customEase = CustomEase.create('custom', 'M0,0 C1,0 0,1 1,1')
 
@@ -161,4 +162,57 @@ export function initLenis() {
   }
 
   requestAnimationFrame(raf)
+}
+
+export function initButtons() {
+  const buttons = document.querySelectorAll('.button-icon')
+
+  buttons.forEach((button) => {
+    button.addEventListener('mouseenter', () => {
+      const icon = button.querySelector('.button-icon_icon')
+      const text = button.querySelector('.button-icon_text')
+
+      const initialIconState = Flip.getState([icon, button, text])
+      icon.style.left = 'auto'
+      icon.style.right = '0.75rem'
+      button.style.paddingLeft = '1rem'
+      button.style.paddingRight = '2.75rem'
+
+      Flip.from(initialIconState, { duration: 0.4, ease: 'power4.out' })
+
+      // const tl = gsap.timeline({
+      //   defaults: { duration: 0.4, ease: 'expo.out' },
+      // })
+
+      // tl.to(button, { paddingLeft: '1rem', paddingRight: '2.75rem' }).to(
+      //   icon,
+      //   { left: 'auto', right: '0.75rem' },
+      //   '<'
+      // )
+    })
+
+    button.addEventListener('mouseleave', () => {
+      const icon = button.querySelector('.button-icon_icon')
+      const text = button.querySelector('.button-icon_text')
+
+      const initialIconState = Flip.getState([icon, button, text])
+
+      icon.style.left = '0.75rem'
+      icon.style.right = 'auto'
+      button.style.paddingLeft = '2.75rem'
+      button.style.paddingRight = '1rem'
+
+      Flip.from(initialIconState, { duration: 0.4, ease: 'power4.out' })
+
+      // const tl = gsap.timeline({
+      //   defaults: { duration: 0.4, ease: 'expo.out' },
+      // })
+
+      // tl.to(button, { paddingLeft: '2.75rem', paddingRight: '1rem' }).to(
+      //   icon,
+      //   { left: '.75rem', right: 'auto' },
+      //   '<'
+      // )
+    })
+  })
 }

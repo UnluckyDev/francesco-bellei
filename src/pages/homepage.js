@@ -1,7 +1,7 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { CustomEase } from 'gsap/CustomEase'
-import { initMenu } from '../utils/utils'
+import { initMenu, initButtons } from '../utils/utils'
 import { customEase } from '../utils/utils'
 
 gsap.registerPlugin(ScrollTrigger, CustomEase)
@@ -13,6 +13,7 @@ export function initHomepage() {
   introAnimation()
   initViniSection()
   initViniSchede()
+  initButtons()
 }
 
 function introAnimation() {
@@ -50,13 +51,13 @@ function initViniSection() {
     trigger.addEventListener('mouseenter', () => {
       gsap.to(icon, { display: 'flex', duration: 0 })
       gsap.to(image, { display: 'block', duration: 0 })
-      gsap.to(section, { backgroundColor: color, duration: 0 })
+      gsap.to(section, { backgroundColor: color, duration: 0.4 })
     })
 
     trigger.addEventListener('mouseleave', () => {
       gsap.to(icon, { display: 'none', duration: 0 })
       gsap.to(image, { display: 'none', duration: 0 })
-      gsap.to(section, { backgroundColor: baseColor, duration: 0 })
+      gsap.to(section, { backgroundColor: baseColor, duration: 0.4 })
     })
   })
 }
