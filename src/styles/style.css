@@ -1,4 +1,27 @@
 .home_ingredienti .line {
-  /* Your styles here */
   overflow: hidden;
+}
+
+.about_hero_content .line {
+  overflow: hidden;
+}
+
+.about_metodo .line {
+  overflow: hidden;
+}
+
+.about_slider .line {
+  overflow: hidden;
+}
+
+.about_blue .line {
+  overflow: hidden;
+}
+
+.about_hero_content_title {
+  opacity: 1;
+}
+
+.about_hero_paragraph {
+  opacity: 1;
 }

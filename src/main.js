@@ -8,6 +8,6 @@ gsap.registerPlugin(ScrollTrigger)
 const body = document.querySelector('body')
 const isMobile = window.innerWidth <= 991 ? true : false
 
-onload = (event) => {
+window.addEventListener('DOMContentLoaded', () => {
   getPageInit()
-}
+})
