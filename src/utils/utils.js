@@ -1,7 +1,6 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { CustomEase } from 'gsap/CustomEase'
-import SplitType from 'split-type'
 import { initHomepage } from '../pages/homepage'
 import { initChiSiamo } from '../pages/chi-siamo'
 import { Flip } from 'gsap/Flip'
@@ -179,16 +178,6 @@ export function initButtons() {
       button.style.paddingRight = '2.75rem'
 
       Flip.from(initialIconState, { duration: 0.4, ease: 'power4.out' })
-
-      // const tl = gsap.timeline({
-      //   defaults: { duration: 0.4, ease: 'expo.out' },
-      // })
-
-      // tl.to(button, { paddingLeft: '1rem', paddingRight: '2.75rem' }).to(
-      //   icon,
-      //   { left: 'auto', right: '0.75rem' },
-      //   '<'
-      // )
     })
 
     button.addEventListener('mouseleave', () => {
@@ -203,16 +192,6 @@ export function initButtons() {
       button.style.paddingRight = '1rem'
 
       Flip.from(initialIconState, { duration: 0.4, ease: 'power4.out' })
-
-      // const tl = gsap.timeline({
-      //   defaults: { duration: 0.4, ease: 'expo.out' },
-      // })
-
-      // tl.to(button, { paddingLeft: '2.75rem', paddingRight: '1rem' }).to(
-      //   icon,
-      //   { left: '.75rem', right: 'auto' },
-      //   '<'
-      // )
     })
   })
 }

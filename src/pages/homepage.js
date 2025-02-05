@@ -3,6 +3,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { CustomEase } from 'gsap/CustomEase'
 import { initMenu, initButtons } from '../utils/utils'
 import { customEase } from '../utils/utils'
+import SplitType from 'split-type'
+import '../styles/style.css'
 
 gsap.registerPlugin(ScrollTrigger, CustomEase)
 
@@ -14,6 +16,7 @@ export function initHomepage() {
   initViniSection()
   initViniSchede()
   initButtons()
+  initSectionIngredienti()
 }
 
 function introAnimation() {
@@ -26,7 +29,7 @@ function introAnimation() {
 
   const tl = gsap.timeline({ defaults: { duration: 1, ease: customEase } })
 
-  gsap.set(navigation, { y: '-110%' })
+  gsap.set(navigation, { y: '-120%' })
   gsap.set(video, { scale: 1.2 })
   gsap.set([maskTop, maskBottom], { height: '0rem' })
   gsap.set([maskLeft, maskRight], { width: '0rem' })
@@ -81,5 +84,63 @@ function initViniSchede() {
       gsap.to(scheda, { opacity: 0, duration: 0.4 })
       gsap.to(scheda, { display: 'none', duration: 0, delay: 0.4 })
     })
+  })
+}
+
+function initSectionIngredienti() {
+  const section = document.querySelector('.home_ingredienti')
+  const title = document.querySelector('.home_ingredienti_title_text')
+  const paragraph = document.querySelector('.home_ingredienti_paragraph_text')
+
+  const imageOverlay = document.querySelector('.home_ingredienti_image_overlay')
+  const image = document.querySelector('.home_ingredienti_image')
+
+  const titleSplit = new SplitType(title, { types: 'lines, words' })
+  const paragraphSplit = new SplitType(paragraph, { types: 'lines, words' })
+
+  titleSplit.words.forEach((word) => {
+    gsap.set(word, { y: '100%' })
+  })
+
+  paragraphSplit.words.forEach((word) => {
+    gsap.set(word, { y: '100%' })
+  })
+
+  gsap.set(imageOverlay, { height: '100%' })
+
+  titleSplit.words.forEach((word) => {
+    gsap.to(word, {
+      y: '0%',
+      duration: 1.2,
+      ease: customEase,
+      scrollTrigger: { trigger: section, start: 'top 30%' },
+    })
+  })
+
+  paragraphSplit.words.forEach((word) => {
+    gsap.to(word, {
+      y: '0%',
+      duration: 1.2,
+      ease: customEase,
+      scrollTrigger: { trigger: section, start: 'top 30%' },
+    })
+  })
+
+  gsap.to(imageOverlay, {
+    height: '0%',
+    duration: 1.2,
+    ease: customEase,
+    scrollTrigger: { trigger: section, start: 'top 50%' },
+  })
+
+  gsap.to(image, {
+    y: '-6rem',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 50%',
+      end: 'bottom 50%',
+      scrub: 2,
+      ease: customEase,
+    },
   })
 }
