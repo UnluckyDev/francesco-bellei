@@ -4,6 +4,7 @@ import { CustomEase } from 'gsap/CustomEase'
 import { initMenu, initButtons } from '../utils/utils'
 import { customEase } from '../utils/utils'
 import SplitType from 'split-type'
+import lottie from 'lottie-web'
 import '../styles/style.css'
 
 gsap.registerPlugin(ScrollTrigger, CustomEase)
@@ -27,17 +28,46 @@ function introAnimation() {
   const maskRight = document.querySelector('.mask_right')
   const video = document.querySelector('.home_hero_video')
 
-  const tl = gsap.timeline({ defaults: { duration: 1, ease: customEase } })
+  const lottieTitle = lottie.loadAnimation({
+    container: document.getElementById('title-lottie-desktop'), // Required
+    path: 'https://cdn.prod.website-files.com/679a4f6c5be377f854bba509/67a6426efe3172623b98d6e7_comp_1.json', // Required
+    renderer: 'svg', // Required
+    loop: false, // Optional
+    autoplay: false, // Optional
+    rendererSettings: {
+      progressiveLoad: true,
+      // preserveAspectRatio: 'xMidYMid slice',
+      // imagePreserveAspectRatio: 'xMidYMid meet',
+    },
+  })
 
-  gsap.set(navigation, { y: '-120%' })
-  gsap.set(video, { scale: 1.2 })
+  const tl = gsap.timeline({
+    defaults: { duration: 1, ease: customEase },
+    paused: true,
+    onStart: () => {},
+  })
+
+  tl.play()
+  // lottieTitle.addEventListener('data_ready', () => {
+
+  // })
+
+  gsap.set(navigation, { top: '-10rem' })
+  gsap.set(video, { scale: 1 })
   gsap.set([maskTop, maskBottom], { height: '0rem' })
   gsap.set([maskLeft, maskRight], { width: '0rem' })
 
-  tl.to(maskTop, { height: '8rem', delay: 0.6, duration: 2 })
-    .to(navigation, { y: '0%', duration: 2 }, '<')
-    .to(maskBottom, { height: '12rem', duration: 2 }, '<')
-    .to([maskLeft, maskRight], { width: '3rem', duration: 2 }, '<')
+  tl.to(maskTop, {
+    height: '8rem',
+    delay: 0,
+    duration: 1,
+    onStart: () => {
+      lottieTitle.play()
+    },
+  })
+    .to(navigation, { top: '1rem', duration: 1 }, '<')
+    .to(maskBottom, { height: '12rem', duration: 1 }, '<')
+    .to([maskLeft, maskRight], { width: '3rem', duration: 1 }, '<')
     .to(video, { scale: 1 }, '<')
 }
 
@@ -113,7 +143,7 @@ function initSectionIngredienti() {
       y: '0%',
       duration: 1.2,
       ease: customEase,
-      scrollTrigger: { trigger: section, start: 'top 30%' },
+      scrollTrigger: { trigger: section, start: 'top 40%' },
     })
   })
 
@@ -122,7 +152,7 @@ function initSectionIngredienti() {
       y: '0%',
       duration: 1.2,
       ease: customEase,
-      scrollTrigger: { trigger: section, start: 'top 30%' },
+      scrollTrigger: { trigger: section, start: 'top 40%' },
     })
   })
 
@@ -130,7 +160,7 @@ function initSectionIngredienti() {
     height: '0%',
     duration: 1.2,
     ease: customEase,
-    scrollTrigger: { trigger: section, start: 'top 50%' },
+    scrollTrigger: { trigger: section, start: 'top 40%' },
   })
 
   gsap.to(image, {
