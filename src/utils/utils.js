@@ -4,6 +4,7 @@ import { CustomEase } from 'gsap/CustomEase'
 import { initHomepage } from '../pages/homepage'
 import { initChiSiamo } from '../pages/chi-siamo'
 import { Flip } from 'gsap/Flip'
+import Lenis from 'lenis'
 
 gsap.registerPlugin(ScrollTrigger, CustomEase, Flip)
 
@@ -11,12 +12,6 @@ export const customEase = CustomEase.create('custom', 'M0,0 C1,0 0,1 1,1')
 
 export function getPageInit() {
   let path = window.location.pathname
-  // console.log('path', path)
-
-  if (path.includes('/projects/')) path = '/project'
-  // if (path.includes('/prodotti/')) path = '/prodotti'
-  // if (path.includes('/post/')) path = '/articoli'
-
   switch (path) {
     case '/':
       initHomepage()
@@ -24,8 +19,8 @@ export function getPageInit() {
     case '/chi-siamo':
       initChiSiamo()
       break
-    case '/project':
-      // initProject()
+    case '/contatti':
+      initContatti()
       break
     default:
       // console.log('no init for this page: ' + path)
@@ -37,6 +32,7 @@ export function getPageInit() {
 export function initMenu() {
   const trigger = document.querySelector('[trigger-menu]')
   const menu = document.querySelector('.menu')
+  const menuClose = document.querySelector('.menu_close')
 
   const menu_links = [
     {
@@ -70,6 +66,10 @@ export function initMenu() {
     isOpen ? tlOpen.reverse() : tlOpen.play()
   })
 
+  menuClose.addEventListener('click', () => {
+    tlOpen.reverse()
+  })
+
   // se clicco sul secondo link chiudo il menu
   menu_links[1].link.addEventListener('click', () => {
     isOpen ? tlOpen.reverse() : tlOpen.play()
@@ -90,6 +90,7 @@ export function initMenu() {
   })
 
   gsap.set(menu, { height: '0vh', display: 'none' })
+  gsap.set(menuClose, { opacity: 0 })
   menu_links.forEach((link) => {
     gsap.set(link.link, { opacity: 0, y: '3rem' })
     gsap.set(link.icon, { display: 'none' })
@@ -102,6 +103,7 @@ export function initMenu() {
     .to(menu_links[1].link, { opacity: 1, y: '0rem' }, '-=.4')
     .to(menu_links[2].link, { opacity: 1, y: '0rem' }, '-=.4')
     .to(menu_links[0].image, { opacity: 1 }, '-=.2')
+    .to(menuClose, { opacity: 1 }, '-=.2')
 
   // #endregion
 
@@ -154,6 +156,8 @@ export function initLenis() {
     touchMultiplier: 2,
     infinite: false,
   })
+
+  window.lenis = lenis
 
   function raf(time) {
     lenis.raf(time)
