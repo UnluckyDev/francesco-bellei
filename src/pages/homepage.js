@@ -65,7 +65,7 @@ function introAnimation() {
       lottieTitle.play()
     },
   })
-    .to(navigation, { top: '1rem', duration: 1 }, '<')
+    .to(navigation, { top: '0rem', duration: 1 }, '<')
     .to(maskBottom, { height: '12rem', duration: 1 }, '<')
     .to([maskLeft, maskRight], { width: '3rem', duration: 1 }, '<')
     .to(video, { scale: 1 }, '<')
