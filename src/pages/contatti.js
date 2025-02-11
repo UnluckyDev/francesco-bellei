@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger, CustomEase)
 
 const isMobile = window.innerWidth <= 991 ? true : false
 
-export function initChiSiamo() {
+export function initContatti() {
   initMenu()
   initButtons()
   initSubmitProxy()

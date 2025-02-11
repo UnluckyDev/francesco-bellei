@@ -3,6 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { CustomEase } from 'gsap/CustomEase'
 import { initHomepage } from '../pages/homepage'
 import { initChiSiamo } from '../pages/chi-siamo'
+import { initContatti } from '../pages/contatti'
 import { Flip } from 'gsap/Flip'
 import Lenis from 'lenis'
 
