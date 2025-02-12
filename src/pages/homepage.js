@@ -5,9 +5,10 @@ import { initMenu, initButtons } from '../utils/utils'
 import { customEase } from '../utils/utils'
 import SplitType from 'split-type'
 import lottie from 'lottie-web'
+import { Flip } from 'gsap/Flip'
 import '../styles/style.css'
 
-gsap.registerPlugin(ScrollTrigger, CustomEase)
+gsap.registerPlugin(ScrollTrigger, CustomEase, Flip)
 
 const isMobile = window.innerWidth <= 991 ? true : false
 
@@ -27,6 +28,17 @@ function introAnimation() {
   const maskBottom = document.querySelector('.mask_bottom')
   const maskRight = document.querySelector('.mask_right')
   const video = document.querySelector('.home_hero_video')
+  const navIcon = document.querySelector('[navigation="icon"]')
+  const navIconContainer = document.querySelector('.navigation_center')
+
+  const navIconTextPath = navIcon.querySelector('path[fill="#F7F2F2"]')
+
+  if (navIconTextPath) navIconTextPath.setAttribute('fill', 'currentColor')
+
+  const initialIconState = Flip.getState([navIcon, navIconContainer])
+  // navIcon.style.scale = 1
+  //put navIcon inside navIconContainer
+  // navIconContainer.appendChild(navIcon)
 
   const lottieTitle = lottie.loadAnimation({
     container: document.getElementById('title-lottie-desktop'), // Required
@@ -47,7 +59,10 @@ function introAnimation() {
     onStart: () => {},
   })
 
-  tl.play()
+  setTimeout(() => {
+    tl.play()
+  }, 1000)
+
   // lottieTitle.addEventListener('data_ready', () => {
 
   // })
@@ -65,7 +80,28 @@ function introAnimation() {
       lottieTitle.play()
     },
   })
-    .to(navigation, { top: '0rem', duration: 1 }, '<')
+    .to(
+      navigation,
+      {
+        top: '0rem',
+        duration: 1,
+        onComplete: () => {
+          navIconContainer.appendChild(navIcon)
+          gsap.set(navIcon, {
+            width: '100%',
+            position: 'relative',
+            // color: 'black',
+          })
+          Flip.from(initialIconState, {
+            duration: 1,
+            color: 'black',
+            ease: customEase,
+            // absolute: true,
+          })
+        },
+      },
+      '<'
+    )
     .to(maskBottom, { height: '12rem', duration: 1 }, '<')
     .to([maskLeft, maskRight], { width: '3rem', duration: 1 }, '<')
     .to(video, { scale: 1 }, '<')
