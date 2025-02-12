@@ -12,11 +12,33 @@ const isMobile = window.innerWidth <= 991 ? true : false
 
 export function initChiSiamo() {
   initMenu()
+  initParallaxHeroImage()
   introAnimation()
   initButtons()
   initSecondSection()
   initBlueSection()
   initSliderSection()
+}
+
+function initParallaxHeroImage() {
+  const image = document.querySelector('.about_hero_image')
+  const section = document.querySelector('.about_hero')
+
+  gsap.set(image, { bottom: '-10rem' })
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1,
+      // markers: true,
+    },
+  })
+
+  tl.to(image, {
+    bottom: '0rem',
+  })
 }
 
 function introAnimation() {
@@ -132,34 +154,34 @@ function initSecondSection() {
   )
   const image = document.querySelector('.about_metodo_image')
 
-  titleSplit.words.forEach((word) => {
-    gsap.set(word, { y: '100%' })
-  })
+  // titleSplit.words.forEach((word) => {
+  //   gsap.set(word, { y: '100%' })
+  // })
 
-  paragraphSplit.words.forEach((word) => {
-    gsap.set(word, { y: '100%' })
-  })
+  // paragraphSplit.words.forEach((word) => {
+  //   gsap.set(word, { y: '100%' })
+  // })
 
   gsap.set(imageTitle, { scale: 0.6, opacity: 0 })
   gsap.set(image, { scale: 0.6 })
 
-  titleSplit.words.forEach((word) => {
-    gsap.to(word, {
-      y: '0%',
-      duration: 1.2,
-      ease: customEase,
-      scrollTrigger: { trigger: section, start: 'top 30%' },
-    })
-  })
+  // titleSplit.words.forEach((word) => {
+  //   gsap.to(word, {
+  //     y: '0%',
+  //     duration: 1.2,
+  //     ease: customEase,
+  //     scrollTrigger: { trigger: section, start: 'top 30%' },
+  //   })
+  // })
 
-  paragraphSplit.words.forEach((word) => {
-    gsap.to(word, {
-      y: '0%',
-      duration: 1.2,
-      ease: customEase,
-      scrollTrigger: { trigger: section, start: 'top 30%' },
-    })
-  })
+  // paragraphSplit.words.forEach((word) => {
+  //   gsap.to(word, {
+  //     y: '0%',
+  //     duration: 1.2,
+  //     ease: customEase,
+  //     scrollTrigger: { trigger: section, start: 'top 30%' },
+  //   })
+  // })
 
   gsap.to(imageTitle, {
     opacity: 1,
@@ -192,6 +214,22 @@ function initBlueSection() {
   )
   const topParagraph = document.querySelector('.about_blue_top_paragraph')
   const bottomParagraph = document.querySelector('.about_blue_bottom_paragraph')
+  const images = document.querySelectorAll('.about_blue_center_image')
+
+  // images.forEach((image, i) => {
+  //   const tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: sectionBlue,
+  //       start: 'top 30%',
+  //       end: 'bottom 30%',
+  //       scrub: 2,
+  //     },
+  //   })
+
+  //   tl.to(image, {
+  //     top: '-15rem',
+  //   })
+  // })
   // console.log(imageOverlays)
 
   const topParagraphSplit = new SplitType(topParagraph, {
@@ -243,25 +281,33 @@ function initSliderSection() {
   const titleSplit = new SplitType(title, { types: 'lines, words' })
   const paragraphSplit = new SplitType(paragraph, { types: 'lines, words' })
 
-  titleSplit.words.forEach((word) => {
-    gsap.set(word, { y: '100%' })
+  gsap.set(title, { opacity: 0 })
+
+  gsap.to(title, {
+    opacity: 1,
+    duration: 0.4,
+    scrollTrigger: { trigger: section, start: 'top 60%' },
   })
 
-  paragraphSplit.words.forEach((word) => {
-    gsap.set(word, { y: '100%' })
-  })
+  // titleSplit.words.forEach((word) => {
+  //   gsap.set(word, { y: '100%' })
+  // })
 
-  gsap.to(titleSplit.words, {
-    y: '0%',
-    duration: 1.2,
-    ease: customEase,
-    scrollTrigger: { trigger: section, start: 'top 30%' },
-  })
+  // paragraphSplit.words.forEach((word) => {
+  //   gsap.set(word, { y: '100%' })
+  // })
 
-  gsap.to(paragraphSplit.words, {
-    y: '0%',
-    duration: 1.2,
-    ease: customEase,
-    scrollTrigger: { trigger: paragraph, start: 'bottom 90%' },
-  })
+  // gsap.to(titleSplit.words, {
+  //   y: '0%',
+  //   duration: 1.2,
+  //   ease: customEase,
+  //   scrollTrigger: { trigger: section, start: 'top 30%' },
+  // })
+
+  // gsap.to(paragraphSplit.words, {
+  //   y: '0%',
+  //   duration: 1.2,
+  //   ease: customEase,
+  //   scrollTrigger: { trigger: paragraph, start: 'bottom 90%' },
+  // })
 }

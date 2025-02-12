@@ -128,33 +128,33 @@ function initSectionIngredienti() {
   const titleSplit = new SplitType(title, { types: 'lines, words' })
   const paragraphSplit = new SplitType(paragraph, { types: 'lines, words' })
 
-  titleSplit.words.forEach((word) => {
-    gsap.set(word, { y: '100%' })
-  })
+  // titleSplit.words.forEach((word) => {
+  //   gsap.set(word, { y: '100%' })
+  // })
 
-  paragraphSplit.words.forEach((word) => {
-    gsap.set(word, { y: '100%' })
-  })
+  // paragraphSplit.words.forEach((word) => {
+  //   gsap.set(word, { y: '100%' })
+  // })
 
   gsap.set(imageOverlay, { height: '100%' })
 
-  titleSplit.words.forEach((word) => {
-    gsap.to(word, {
-      y: '0%',
-      duration: 1.2,
-      ease: customEase,
-      scrollTrigger: { trigger: section, start: 'top 40%' },
-    })
-  })
+  // titleSplit.words.forEach((word) => {
+  //   gsap.to(word, {
+  //     y: '0%',
+  //     duration: 1.2,
+  //     ease: customEase,
+  //     scrollTrigger: { trigger: section, start: 'top 40%' },
+  //   })
+  // })
 
-  paragraphSplit.words.forEach((word) => {
-    gsap.to(word, {
-      y: '0%',
-      duration: 1.2,
-      ease: customEase,
-      scrollTrigger: { trigger: section, start: 'top 40%' },
-    })
-  })
+  // paragraphSplit.words.forEach((word) => {
+  //   gsap.to(word, {
+  //     y: '0%',
+  //     duration: 1.2,
+  //     ease: customEase,
+  //     scrollTrigger: { trigger: section, start: 'top 40%' },
+  //   })
+  // })
 
   gsap.to(imageOverlay, {
     height: '0%',
