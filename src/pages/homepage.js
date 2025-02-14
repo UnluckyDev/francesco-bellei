@@ -61,7 +61,7 @@ function introAnimation() {
 
   setTimeout(() => {
     tl.play()
-  }, 1000)
+  }, 1500)
 
   // lottieTitle.addEventListener('data_ready', () => {
 
