@@ -10,6 +10,7 @@ import Lenis from 'lenis'
 gsap.registerPlugin(ScrollTrigger, CustomEase, Flip)
 
 export const customEase = CustomEase.create('custom', 'M0,0 C1,0 0,1 1,1')
+export const isMobile = window.innerWidth <= 991 ? true : false
 
 export function getPageInit() {
   let path = window.location.pathname

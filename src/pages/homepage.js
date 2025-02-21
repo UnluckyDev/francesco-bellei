@@ -7,10 +7,9 @@ import SplitType from 'split-type'
 import lottie from 'lottie-web'
 import { Flip } from 'gsap/Flip'
 import '../styles/style.css'
+import { isMobile } from '../utils/utils'
 
 gsap.registerPlugin(ScrollTrigger, CustomEase, Flip)
-
-const isMobile = window.innerWidth <= 991 ? true : false
 
 export function initHomepage() {
   initMenu()
@@ -133,22 +132,33 @@ function initViniSection() {
 
 function initViniSchede() {
   const triggers = document.querySelectorAll('[vini-trigger]')
+  if (window.lenis) console.log('weila')
 
   triggers.forEach((trigger) => {
     const triggerName = trigger.getAttribute('vini-trigger')
     const scheda = document.querySelector(`[vini-scheda="${triggerName}"]`)
     const closeTrigger = scheda.querySelector('.home_vini_scheda_close')
 
+    if (isMobile) {
+      const windowWidth = window.innerWidth
+      const windowHeight = window.innerHeight
+      scheda.style.width = `${windowWidth}px`
+      scheda.style.height = `${windowHeight}px`
+    }
+
     gsap.set(scheda, { opacity: 0, display: 'none' })
 
     trigger.addEventListener('click', () => {
       gsap.to(scheda, { display: 'flex', duration: 0 })
       gsap.to(scheda, { opacity: 1, duration: 0.4 })
+      scheda.click()
+      if (window.lenis) window.lenis.stop()
     })
 
     closeTrigger.addEventListener('click', () => {
       gsap.to(scheda, { opacity: 0, duration: 0.4 })
       gsap.to(scheda, { display: 'none', duration: 0, delay: 0.4 })
+      if (window.lenis) window.lenis.start()
     })
   })
 }
