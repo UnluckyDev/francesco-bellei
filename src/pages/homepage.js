@@ -71,8 +71,13 @@ function introAnimation() {
   gsap.set([maskTop, maskBottom], { height: '0rem' })
   gsap.set([maskLeft, maskRight], { width: '0rem' })
 
+  let maskTopHeight = isMobile ? '6rem' : '8rem'
+  let maskBottomHeight = isMobile ? '4rem' : '12rem'
+  let maskRightWidth = isMobile ? '1rem' : '3rem'
+  let maskLeftWidth = isMobile ? '1rem' : '3rem'
+
   tl.to(maskTop, {
-    height: '8rem',
+    height: maskTopHeight,
     delay: 0,
     duration: 1,
     onStart: () => {
@@ -101,8 +106,8 @@ function introAnimation() {
       },
       '<'
     )
-    .to(maskBottom, { height: '12rem', duration: 1 }, '<')
-    .to([maskLeft, maskRight], { width: '3rem', duration: 1 }, '<')
+    .to(maskBottom, { height: maskBottomHeight, duration: 1 }, '<')
+    .to([maskLeft, maskRight], { width: maskRightWidth, duration: 1 }, '<')
     .to(video, { scale: 1 }, '<')
 }
 
@@ -141,7 +146,7 @@ function initViniSchede() {
 
     if (isMobile) {
       const windowWidth = window.innerWidth
-      const windowHeight = window.innerHeight
+      const windowHeight = window.outerHeight
       scheda.style.width = `${windowWidth}px`
       scheda.style.height = `${windowHeight}px`
     }
