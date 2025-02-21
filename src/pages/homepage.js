@@ -14,7 +14,7 @@ gsap.registerPlugin(ScrollTrigger, CustomEase, Flip)
 export function initHomepage() {
   initMenu()
   introAnimation()
-  initViniSection()
+  if (!isMobile) initViniSection()
   initViniSchede()
   initButtons()
   initSectionIngredienti()
