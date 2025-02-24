@@ -27,7 +27,7 @@ function initSubmitProxy() {
 }
 
 function initImageParallax() {
-  console.log('lol')
+  // console.log('lol')
   const image = document.querySelector('.contatti_image_image')
   const section = document.querySelector('.page-wrapper')
 

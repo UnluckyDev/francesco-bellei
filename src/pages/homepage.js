@@ -137,7 +137,7 @@ function initViniSection() {
 
 function initViniSchede() {
   const triggers = document.querySelectorAll('[vini-trigger]')
-  if (window.lenis) console.log('weila')
+  // if (window.lenis) console.log('weila')
 
   triggers.forEach((trigger) => {
     const triggerName = trigger.getAttribute('vini-trigger')
