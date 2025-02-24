@@ -12,7 +12,7 @@ const isMobile = window.innerWidth <= 991 ? true : false
 
 export function initContatti() {
   initMenu()
-  initButtons()
+  if (!isMobile) initButtons()
   initSubmitProxy()
   initImageParallax()
 }

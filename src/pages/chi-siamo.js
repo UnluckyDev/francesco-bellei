@@ -14,7 +14,7 @@ export function initChiSiamo() {
   initMenu()
   initParallaxHeroImage()
   introAnimation()
-  initButtons()
+  if (!isMobile) initButtons()
   initSecondSection()
   initBlueSection()
   initSliderSection()

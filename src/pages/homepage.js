@@ -16,7 +16,7 @@ export function initHomepage() {
   introAnimation()
   if (!isMobile) initViniSection()
   initViniSchede()
-  initButtons()
+  if (!isMobile) initButtons()
   initSectionIngredienti()
 }
 
