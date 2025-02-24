@@ -14,6 +14,7 @@ export const isMobile = window.innerWidth <= 991 ? true : false
 
 export function getPageInit() {
   let path = window.location.pathname
+  console.log(path)
   switch (path) {
     case '/':
       initHomepage()
@@ -22,6 +23,15 @@ export function getPageInit() {
       initChiSiamo()
       break
     case '/contatti':
+      initContatti()
+      break
+    case '/en/home':
+      initHomepage()
+      break
+    case '/en/about-us':
+      initChiSiamo()
+      break
+    case '/en/contact-us':
       initContatti()
       break
     default:
